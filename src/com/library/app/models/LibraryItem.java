@@ -35,8 +35,19 @@ public class LibraryItem {
         return location;
     }
 
-    @Override
-    public String toString() {
-        return "Item: " + name + " | ID: " + id;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

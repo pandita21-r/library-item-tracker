@@ -7,10 +7,13 @@ import com.library.app.models.LibraryItem;
 
 public class ItemManager {
     private List<LibraryItem> inventory;
-    private final String FILE_NAME = "inventory.txt";
+    private static final String ROOT_FILE = "inventory.txt";
+    private static final String DATA_FILE = "data/inventory.txt";
+    private String activeFilePath;
 
     public ItemManager() {
         this.inventory = new ArrayList<>();
+        this.activeFilePath = determineActiveFilePath();
         loadFromFile(); // Load existing data as soon as the manager is created
     }
 
@@ -32,9 +35,23 @@ public class ItemManager {
         return false;
     }
 
+    public boolean updateItem(String id, String newName, String newCreator, String newCategory, String newLocation) {
+        LibraryItem item = findItemById(id);
+        if (item != null) {
+            item.setName(newName);
+            item.setCreator(newCreator);
+            item.setCategory(newCategory);
+            item.setLocation(newLocation);
+            saveToFile(); // Update file after modification
+            return true;
+        }
+        return false;
+    }
+
     public LibraryItem findItemById(String id) {
+        String searchId = normalizeId(id);
         for (LibraryItem item : inventory) {
-            if (item.getId().equalsIgnoreCase(id)) return item;
+            if (item.getId() != null && item.getId().trim().equalsIgnoreCase(searchId)) return item;
         }
         return null;
     }
@@ -43,10 +60,20 @@ public class ItemManager {
         return inventory;
     }
 
+    private String normalizeId(String id) {
+        return id == null ? "" : id.trim();
+    }
+
     // --- FILE PERSISTENCE LOGIC ---
 
     private void saveToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+        File file = new File(activeFilePath);
+        File parent = file.getParentFile();
+        if (parent != null && !parent.exists()) {
+            parent.mkdirs();
+        }
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
             for (LibraryItem item : inventory) {
                 // Save data separated by a delimiter like "|"
                 writer.println(item.getName() + "|" + 
@@ -61,7 +88,7 @@ public class ItemManager {
     }
 
     private void loadFromFile() {
-        File file = new File(FILE_NAME);
+        File file = new File(activeFilePath);
         if (!file.exists()) return; // Nothing to load yet
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -76,4 +103,18 @@ public class ItemManager {
             System.err.println("Error loading file: " + e.getMessage());
         }
     }
+
+    private String determineActiveFilePath() {
+        File rootFile = new File(ROOT_FILE);
+        File dataFile = new File(DATA_FILE);
+        if (rootFile.exists()) {
+            return ROOT_FILE;
+        }
+        if (dataFile.exists()) {
+            return DATA_FILE;
+        }
+        // Default to root inventory file when neither exists.
+        return ROOT_FILE;
+    }
 }
+
