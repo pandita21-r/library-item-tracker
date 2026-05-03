@@ -1,7 +1,6 @@
 package com.library.app.ui;
 
 import javax.swing.*;
-import com.library.app.models.LibraryItem;
 import com.library.app.services.ItemManager;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -10,7 +9,6 @@ public class DashboardFrame extends JFrame {
     private ItemManager itemManager;
 
     public DashboardFrame() {
-        // When this is initialized, it automatically loads your 'inventory.txt'
         this.itemManager = new ItemManager(); 
 
         setTitle("Library Dashboard");

@@ -4,8 +4,6 @@ import javax.swing.*;
 import com.library.app.services.LoginService;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame {
     private JTextField userField;
@@ -28,7 +26,6 @@ public class LoginFrame extends JFrame {
         container.setBackground(Color.WHITE);
         container.setBorder(new EmptyBorder(40, 30, 40, 30));
 
-        // 1. Header (Cyan Box) - Occupies more horizontal space
         JLabel headerLabel = new JLabel("LIBRARY ITEM TRACKER", SwingConstants.CENTER);
         headerLabel.setOpaque(true);
         headerLabel.setBackground(new Color(100, 220, 230));
@@ -44,9 +41,9 @@ public class LoginFrame extends JFrame {
 
         // 3. Input Panel (Orange Box) - This is where the color occupies more space
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridBagLayout()); // Using GridBag inside for better label alignment
+        inputPanel.setLayout(new GridBagLayout()); 
         inputPanel.setBackground(new Color(255, 180, 80));
-        inputPanel.setMaximumSize(new Dimension(350, 180)); // Larger box for more color
+        inputPanel.setMaximumSize(new Dimension(350, 180)); 
         inputPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         inputPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -58,7 +55,6 @@ public class LoginFrame extends JFrame {
         userField = new JTextField();
         passField = new JPasswordField();
         
-        // Customizing field heights to look like the image
         userField.setPreferredSize(new Dimension(0, 35));
         passField.setPreferredSize(new Dimension(0, 35));
 

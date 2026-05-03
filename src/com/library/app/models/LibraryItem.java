@@ -15,8 +15,6 @@ public class LibraryItem {
         this.location = location;
     }
 
-    // --- GETTERS (These fix the errors in your screenshot) ---
-
     public String getName() {
         return name;
     }
