@@ -75,7 +75,6 @@ public class ItemManager {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
             for (LibraryItem item : inventory) {
-                // Save data separated by a delimiter like "|"
                 writer.println(item.getName() + "|" + 
                                item.getCreator() + "|" + 
                                item.getId() + "|" + 
@@ -113,7 +112,6 @@ public class ItemManager {
         if (dataFile.exists()) {
             return DATA_FILE;
         }
-        // Default to root inventory file when neither exists.
         return ROOT_FILE;
     }
 }

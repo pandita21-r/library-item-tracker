@@ -24,7 +24,6 @@ public class RegisterFrame extends JFrame {
         container.setBorder(new EmptyBorder(20, 20, 20, 20));
         container.setBackground(Color.WHITE);
 
-        // Header - Using the Orange theme
         JLabel header = new JLabel("ITEM REGISTRATION", SwingConstants.CENTER);
         header.setOpaque(false);
         header.setForeground(new Color(40, 40, 40));
@@ -44,7 +43,7 @@ public class RegisterFrame extends JFrame {
         creatorField = new JTextField();
         idField = new JTextField();
         categoryField = new JTextField();
-        locationField = new JTextField(); // New field for physical location
+        locationField = new JTextField(); 
         nameField.setPreferredSize(new Dimension(0, 34));
         creatorField.setPreferredSize(new Dimension(0, 34));
         idField.setPreferredSize(new Dimension(0, 34));
@@ -80,7 +79,6 @@ public class RegisterFrame extends JFrame {
             String loc = locationField.getText();
 
             if (!name.isEmpty() && !id.isEmpty() && !loc.isEmpty()) {
-                // Now passing 5 arguments to match the updated LibraryItem constructor
                 LibraryItem newItem = new LibraryItem(name, creator, id, cat, loc);
                 itemManager.registerItem(newItem);
                 

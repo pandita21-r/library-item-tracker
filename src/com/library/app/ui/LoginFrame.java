@@ -17,10 +17,8 @@ public class LoginFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // Background of the frame
         getContentPane().setBackground(Color.WHITE);
 
-        // Main container with BoxLayout (Vertical)
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.setBackground(Color.WHITE);
@@ -34,12 +32,11 @@ public class LoginFrame extends JFrame {
         headerLabel.setMaximumSize(new Dimension(350, 100)); // Controlled height, full width
         headerLabel.setPreferredSize(new Dimension(350, 100));
 
-        // 2. "LOGIN" label
+        // login label
         JLabel loginText = new JLabel("LOGIN");
         loginText.setFont(new Font("SansSerif", Font.BOLD, 14));
         loginText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // 3. Input Panel (Orange Box) - This is where the color occupies more space
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridBagLayout()); 
         inputPanel.setBackground(new Color(255, 180, 80));
@@ -84,8 +81,8 @@ public class LoginFrame extends JFrame {
         container.add(Box.createRigidArea(new Dimension(0, 30))); // Gap below orange box
         container.add(loginBtn);
         
-        // Footer (Brand text)
-        container.add(Box.createVerticalGlue()); // Pushes footer to the bottom
+        
+        container.add(Box.createVerticalGlue()); 
         JLabel footer = new JLabel("BY RAYMARK PANDITA");
         footer.setFont(new Font("SansSerif", Font.PLAIN, 10));
         footer.setAlignmentX(Component.CENTER_ALIGNMENT);
